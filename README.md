@@ -8,4 +8,4 @@ Move the script to an appropriate location, and then add it to your completers b
 source /path/to/xonsh-remoteDirCompleter.py
 completer add RemoteDirCompleter remoteDirCompleter
 ```
-You might want to do this in your .xonshrc
+You might want to do this in your .xonshrc to enable this on shell startup.
