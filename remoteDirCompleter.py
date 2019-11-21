@@ -9,5 +9,8 @@ def remoteDirCompleter(prefix, line, begindx, endidx, ctx):
 
         fileList = re.split("\n", $(ssh @(hostName) find @(path)* -maxdepth 0))
 
+        if fileList == ['']:
+            return None
+
         return set(fileList)
     return None
