@@ -1,16 +1,17 @@
 def remoteDirCompleter(prefix, line, begindx, endidx, ctx):
     import re
-    result = re.findall("[A-Za-z]+:[A-Za-z0-9/]*", prefix)
+    result = re.findall("[A-Za-z]+:[^:]*", prefix)
 
     if result: # is not empty
         hostName, path = result[0].split(":")
         if not path: # is empty
             path = "/"
 
-        fileList = re.split("\n", $(ssh @(hostName) find @(path)* -maxdepth 0))
+        fileList = re.split("\n", $(ssh @(hostName) find @(path)* -maxdepth 0 ))
 
-        if fileList == ['']:
-            return None
+        fileList = filter(lambda x: x != '', fileList)
+
+        fileList = map(lambda x: hostName + ":" + x, fileList)
 
         return set(fileList)
     return None
