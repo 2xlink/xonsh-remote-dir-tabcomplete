@@ -4,13 +4,14 @@ def remoteDirCompleter(prefix, line, begindx, endidx, ctx):
 
     if result: # is not empty
         hostName, path = result[0].split(":")
-        if not path: # is empty
-            path = ""
 
+        # Get matching files
         fileList = re.split("\n", $(ssh @(hostName) ls -d1FL @(path + "*")))
 
+        # Remove empty entries
         fileList = filter(lambda x: x != '', fileList)
 
+        # Prefixes the suggestions with the host name
         fileList = map(lambda x: hostName + ":" + x, fileList)
 
         return set(fileList)
