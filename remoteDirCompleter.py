@@ -1,5 +1,5 @@
 def remoteDirCompleter(prefix, line, begindx, endidx, ctx):
-    import re, subprocess
+    import re
     result = re.findall("[A-Za-z]+:[^:]*", prefix)
 
     if result: # is not empty
@@ -10,6 +10,9 @@ def remoteDirCompleter(prefix, line, begindx, endidx, ctx):
 
         # Remove empty entries
         fileList = filter(lambda x: x != '', fileList)
+
+        # Escape spaces
+        fileList = map(lambda x: x.replace(" ", "\\ "), fileList)
 
         # Prefixes the suggestions with the host name
         fileList = map(lambda x: hostName + ":" + x, fileList)
