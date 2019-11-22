@@ -1,4 +1,4 @@
-# xonsh-remoteDirCompleter
+# xonsh-remote-dir-tabcompletions
 
 This script enables tab completion for remote directories, just like fish and zsh do.
 
