@@ -6,12 +6,15 @@ def remoteDirCompleter(prefix, line, begindx, endidx, ctx):
         hostName, path = result[0].split(":")
 
         # Get matching files
-        fileList = re.split("\n", $(ssh @(hostName) ls -d1FL @(path + "*")))
+        fileList = re.split("\n", $(ssh @(hostName) ls -d1F --file-type @(path + "*")))
 
         # Remove empty entries
         fileList = filter(lambda x: x != '', fileList)
 
-        # Escape spaces
+        # Escape control characters
+        fileList = map(lambda x: x.replace("&", "\\&"), fileList)
+        fileList = map(lambda x: x.replace("'", "\\'"), fileList)
+        fileList = map(lambda x: x.replace("\"", "\\\""), fileList)
         fileList = map(lambda x: x.replace(" ", "\\ "), fileList)
 
         # Prefixes the suggestions with the host name
