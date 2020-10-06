@@ -1,5 +1,9 @@
-def remoteDirCompleter(prefix, line, begindx, endidx, ctx):
-    import re
+import re
+
+def _remoteDirCompleter(prefix, line, begindx, endidx, ctx):
+    """
+    Remote dir tab completion for your xonsh shell.
+    """
 
     hostPathRegex = "[\"\']?[A-Za-z]+:[^:]*"
     results = re.findall("^" + hostPathRegex + "$", prefix)
@@ -35,3 +39,6 @@ def remoteDirCompleter(prefix, line, begindx, endidx, ctx):
         return set(fileList)
 
     return None
+
+__xonsh__.completers['xontrib_remote_dir_tabcomplete'] = _remoteDirCompleter
+__xonsh__.completers.move_to_end('xontrib_remote_dir_tabcomplete', last=False)

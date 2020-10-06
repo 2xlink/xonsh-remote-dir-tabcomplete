@@ -1,20 +1,26 @@
-# xonsh-remote-dir-tabcompletions
+Remote dir tab completion for your xonsh shell.
 
-This script enables tab completion for remote directories, just like fish and zsh do.
+## Installation
 
-Like this:
-```
- $ ~ rsync hp:/ (press tab)
- bin/           etc/           lib/           mnt/           run/           swap8G.img     var/          
- boot/          home/          lib64/         opt/           sbin/          sys/           vmlinuz       
- dev/           initrd.img     lost+found/    proc/          snap/          tmp/           vmlinuz.old   
- docker/        initrd.img.old media/         root/          srv/           usr/                            
+To install use pip:
+```bash
+xpip install xontrib-remote-dir-tabcomplete
 ```
 
-### Installation
-Move the script to an appropriate location, and then add it to your completers by using
+Or from the repo:
+```bash
+xpip install -U git+https://github.com/2xlink/xontrib-remote-dir-tabcomplete
 ```
-source /path/to/xonsh-remoteDirCompleter.xsh
-completer add RemoteDirCompleter remoteDirCompleter
+
+## Usage
+
+```bash
+xontrib load remote_dir_tabcomplete
+rsync my_host:~/<press tab>
+# Completion: 
+#   directory_from_home_on_my_host/
 ```
-You might want to do this in your .xonshrc to enable this on shell startup.
+
+## Credits
+
+This package was created using [cookiecutter template](https://github.com/xonsh/xontrib-cookiecutter).
