@@ -15,9 +15,10 @@ xpip install -U git+https://github.com/2xlink/xontrib-remote-dir-tabcomplete
 ## Usage
 
 ```bash
-$ xontrib load remote_dir_tabcomplete
-$ ~ rsync my_host:~/<press tab>
-my_home_on_my_host/
+xontrib load remote_dir_tabcomplete
+rsync my_host:~/<press tab>
+# Completion: 
+#   directory_from_home_on_my_host/
 ```
 
 ## Credits
